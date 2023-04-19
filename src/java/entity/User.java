@@ -18,18 +18,18 @@ public class User {
     public User() {
     }
 
-    public User(int id, String firstName, String lastName, String username, String password, String email, String address, String city, String district, String ward, int role) {
+    public User(int id, String firstName, String lastName, String username, String password, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.address = address;
-        this.city = city;
-        this.district = district;
-        this.ward = ward;
-        this.role = role;
+        this.address = "";
+        this.city = "";
+        this.district = "";
+        this.ward = "";
+        this.role = 0;
     }
 
     public int getId() {

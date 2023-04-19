@@ -32,7 +32,7 @@ public class DBConnect {
 //        } catch (SQLException ex) {
 //            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-        this("jdbc:sqlserver://localhost:1433;databaseName=PRJ_project", "sa", "123456");
+        this("jdbc:sqlserver://localhost:1433;databaseName=BOOK_STORE", "sa", "123456");
     }
     
     public DBConnect(String url, String userName, String pass) {

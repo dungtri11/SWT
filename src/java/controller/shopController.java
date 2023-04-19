@@ -4,6 +4,12 @@
  */
 package controller;
 
+import dao.DAOAuthor;
+import dao.DAOBook;
+import dao.DAOGenre;
+import entity.Author;
+import entity.Book;
+import entity.Genre;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,6 +20,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.Vector;
 
 /**
  *
@@ -34,8 +41,12 @@ public class shopController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
+            
             /* TODO output your page here. You may use following sample code. */
-             dispatch(request, response, "checkout.jsp");
+
+
+            
+            dispatch(request, response, "shop.jsp");
         }
     }
 

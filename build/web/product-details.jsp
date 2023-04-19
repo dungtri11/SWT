@@ -5,6 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="dao.DAOGenre, entity.Genre" %>
+<%@page import="dao.DAOAuthor, entity.Author" %>
+<%@page import="dao.DAOBook, entity.Book" %>
+<%@page import="dao.DAOUser, entity.User" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,10 +20,10 @@
         <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
         <!-- Title  -->
-        <title>Amado - Furniture Ecommerce Template | Product Details</title>
+        <title>ConOng Bookstore | Product Details</title>
 
         <!-- Favicon  -->
-        <link rel="icon" href="img/core-img/favicon.ico">
+        <link rel="icon" href="img/core-img/conongcute.png">
 
         <!-- Core Style CSS -->
         <link rel="stylesheet" href="css/core-style.css">
@@ -28,6 +32,15 @@
     </head>
 
     <body>
+        <%
+            User user = (User)session.getAttribute("user");
+            Integer user_id = (user == null ? 0 : user.getId());
+            DAOUser du = new DAOUser();
+            DAOGenre dg = new DAOGenre();
+            DAOAuthor da = new DAOAuthor();
+            DAOBook db = new DAOBook();
+            int bookid = Integer.parseInt((request.getParameter("books") == null ? "0" : request.getParameter("books")));;
+        %>
         <!-- Search Wrapper Area Start -->
         <div class="search-wrapper section-padding-100">
             <div class="search-close">
@@ -62,9 +75,10 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb mt-50">
                                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="#">Genre</a></li>
-<!--                                    <li class="breadcrumb-item"><a href="#">Chairs</a></li>-->
-                                    <li class="breadcrumb-item active" aria-current="page">Bookname</li>
+                                    <li class="breadcrumb-item"><a href="#"><%=dg.getGenre(db.getBook(bookid).getGenreId()).getName()%></a></li>
+                                    <!--                                    <li class="breadcrumb-item"><a href="#">Chairs</a></li>-->
+
+                                    <li class="breadcrumb-item active" aria-current="page"><%=db.getBook(bookid).getTitle()%></li>
                                 </ol>
                             </nav>
                         </div>
@@ -75,36 +89,36 @@
                             <div class="single_product_thumb">
                                 <div id="product_details_slider" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
-                                        <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(img/book-cover/example.jpg);">
+                                        <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(img/books-img/<%=db.getBook(bookid).getImage()%>);">
                                         </li>
-                                        <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(img/author-img/example.jpg);">
+                                        <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(img/authors-img/<%=da.getAuthor(db.getBook(bookid).getAuthorId()).getImage()%>);">
                                         </li>
-                                        <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(img/genre-img/example.jpg);">
-<!--                                        </li>
-                                        <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url(img/product-img/pro-big-4.jpg);">
-                                        </li>-->
+                                        <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(img/genres-img/<%=dg.getGenre(db.getBook(bookid).getGenreId()).getImage()%>);">
+                                            <!--                                        </li>
+                                                                                    <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url(img/product-img/pro-big-4.jpg);">
+                                                                                    </li>-->
                                     </ol>
                                     <div class="carousel-inner"> 
                                         <div class="carousel-item active">
                                             <a class="gallery_img" href="img/book-cover/example.jpg">
-                                                <img class="d-block w-100" src="img/book-cover/example.jpg" alt="First slide">
+                                                <img class="d-block w-100" src="img/books-img/<%=db.getBook(bookid).getImage()%>" alt="First slide">
                                             </a>
                                         </div>
                                         <div class="carousel-item">
                                             <a class="gallery_img" href="img/author-img/example.jpg">
-                                                <img class="d-block w-100" src="img/author-img/example.jpg" alt="Second slide">
+                                                <img class="d-block w-100" src="img/authors-img/<%=da.getAuthor(db.getBook(bookid).getAuthorId()).getImage()%>" alt="Second slide">
                                             </a>
                                         </div>
                                         <div class="carousel-item">
                                             <a class="gallery_img" href="img/genre-img/example.jpg">
-                                                <img class="d-block w-100" src="img/genre-img/example.jpg" alt="Third slide">
+                                                <img class="d-block w-100" src="img/genres-img/<%=dg.getGenre(db.getBook(bookid).getGenreId()).getImage()%>" alt="Third slide">
                                             </a>
                                         </div>
-<!--                                        <div class="carousel-item">
-                                            <a class="gallery_img" href="img/product-img/pro-big-4.jpg">
-                                                <img class="d-block w-100" src="img/product-img/pro-big-4.jpg" alt="Fourth slide">
-                                            </a>
-                                        </div>-->
+                                        <!--                                        <div class="carousel-item">
+                                                                                    <a class="gallery_img" href="img/product-img/pro-big-4.jpg">
+                                                                                        <img class="d-block w-100" src="img/product-img/pro-big-4.jpg" alt="Fourth slide">
+                                                                                    </a>
+                                                                                </div>-->
                                     </div>
                                 </div>
                             </div>
@@ -114,9 +128,9 @@
                                 <!-- Product Meta Data -->
                                 <div class="product-meta-data">
                                     <div class="line"></div>
-                                    <p class="product-price">Book price $$$</p>
+                                    <p class="product-price"><%=db.getBook(bookid).getPrice()%> $$$</p>
                                     <a href="product-details.jsp">
-                                        <h6>Book name</h6>
+                                        <h6><%=db.getBook(bookid).getTitle()%></h6>
                                     </a>
                                     <!-- Ratings & Review -->
                                     <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
@@ -136,28 +150,18 @@
                                 </div>
 
                                 <div class="short_overview my-5">
-                                    <p>Book description</p>
+                                    <p><%=db.getBook(7).getDescription()%></p>
                                     <p>
-                                    <h4>Author's name</h4>
-                                        Author description
+                                    <h3><%=da.getAuthor(db.getBook(bookid).getAuthorId()).getName()%></h3>
+                                    <p><%=da.getAuthor(db.getBook(bookid).getAuthorId()).getDescription()%></p>
                                     </p>
                                 </div>
 
                                 <!-- Add to Cart Form -->
-                                <form class="cart clearfix" method="post">
-                                    <div class="cart-btn d-flex mb-50">
-                                        <p>Qty</p>
-                                        <div class="quantity">
-                                            <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if (!isNaN(qty) & amp; & amp; qty & gt; 1) effect.value--; return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-                                            <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
-                                            <span class="qty-plus" onclick="var effect = document.getElementById('qty');
-                                                    var qty = effect.value;
-                                                    if (!isNaN(qty))
-                                                        effect.value++;
-                                                    return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
-                                        </div>
-                                    </div>
-                                    <button type="submit" name="addtocart" value="5" class="btn amado-btn">Add to cart</button>
+                                <form class="cart clearfix" action="quantityController" method="post">
+                                    <input type="hidden" name="books" value="<%=bookid%>">
+                                    <input type="hidden" name="orders" value="<%=du.getCurrentOrders(user_id).getId()%>">
+                                    <button type="submit" name="quantity" value="add" class="btn amado-btn">Add to cart</button>
                                 </form>
 
                             </div>

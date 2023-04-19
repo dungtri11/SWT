@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="dao.DAOOrder,dao.DAOUser,entity.User" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,10 +17,10 @@
         <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
         <!-- Title  -->
-        <title>Amado - Furniture Ecommerce Template | Checkout</title>
+        <title>ConOng Bookstore | Checkout</title>
 
         <!-- Favicon  -->
-        <link rel="icon" href="img/core-img/favicon.ico">
+        <link rel="icon" href="img/core-img/conongcute.png">
 
         <!-- Core Style CSS -->
         <link rel="stylesheet" href="css/core-style.css">
@@ -28,6 +29,12 @@
     </head>
 
     <body>
+        <%
+            User user = (User)session.getAttribute("user");
+            Integer user_id = (user == null ? 0 : user.getId());
+            DAOUser du = new DAOUser();
+            DAOOrder dOrder = new DAOOrder();
+        %>
         <!-- Search Wrapper Area Start -->
         <div class="search-wrapper section-padding-100">
             <div class="search-close">
@@ -63,7 +70,10 @@
                                     <h2>Checkout</h2>
                                 </div>
 
-                                <form action="#" method="post">
+                                <form action="checkoutController" method="post" id="myForm">
+                                    <input type="hidden" name="info" value="get">
+                                    <input type="hidden" name="orders" value="<%=du.getCurrentOrders(user_id).getId()%>">
+                                    <input type="hidden" name="method" id="method">
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <input type="text" class="form-control" id="first_name" value="" placeholder="First Name" required>
@@ -77,9 +87,6 @@
                                         <div class="col-12 mb-3">
                                             <input type="text" class="form-control" id="street_address" placeholder="Address" value="">
                                         </div>
-<!--                                        <div class="col-12 mb-3">
-                                            <input type="text" class="form-control" id="company" placeholder="Company Name" value="">
-                                        </div>-->
                                         <div class="col-12 mb-3">
                                             <input type="number" class="form-control mb-3" id="phone_number" placeholder="Phone Number" value="">
                                         </div>
@@ -114,26 +121,26 @@
                             <div class="cart-summary">
                                 <h5>Cart Total</h5>
                                 <ul class="summary-table">
-                                    <li><span>subtotal:</span> <span>$140.00</span></li>
+                                    <li><span>subtotal:</span> <span>$<%=du.getCurrentOrders(user_id).getTotal()%></span></li>
                                     <li><span>delivery:</span> <span>Free</span></li>
-                                    <li><span>total:</span> <span>$140.00</span></li>
+                                    <li><span>total:</span> <span>$<%=du.getCurrentOrders(user_id).getTotal()%></span></li>
                                 </ul>
-
-                                <div class="payment-method">
-                                    <!-- Cash on delivery -->
-                                    <div class="custom-control custom-checkbox mr-sm-2">
-                                        <input type="checkbox" class="custom-control-input" id="cod" checked>
-                                        <label class="custom-control-label" for="cod">Cash on Delivery</label>
+                                <form >
+                                    <div class="payment-method">
+                                        <!-- Cash on delivery -->
+                                        <div class="custom-control custom-radio mr-sm-2">
+                                            <input type="radio" class="custom-control-input" id="cod" name="payment" value="cash" checked>
+                                            <label class="custom-control-label" for="cod">Cash on Delivery</label>
+                                        </div>
+                                        <!-- Paypal -->
+                                        <div class="custom-control custom-radio mr-sm-2">
+                                            <input type="radio" class="custom-control-input" id="paypal" name="payment" value="card">
+                                            <label class="custom-control-label" for="paypal">Paypal <img class="ml-15" src="img/core-img/paypal.png" alt=""></label>
+                                        </div>
                                     </div>
-                                    <!-- Paypal -->
-                                    <div class="custom-control custom-checkbox mr-sm-2">
-                                        <input type="checkbox" class="custom-control-input" id="paypal">
-                                        <label class="custom-control-label" for="paypal">Paypal <img class="ml-15" src="img/core-img/paypal.png" alt=""></label>
-                                    </div>
-                                </div>
-
-                                <div class="cart-btn mt-100">
-                                    <a href="#" class="btn amado-btn w-100">Checkout</a>
+                                </form>    
+                                <div class="cart-btn mt-100 btn amado-btn w-100" onclick="checkout()">
+                                    Checkout
                                 </div>
                             </div>
                         </div>
@@ -159,6 +166,18 @@
         <script src="js/plugins.js"></script>
         <!-- Active js -->
         <script src="js/active.js"></script>
+        <!-- Active js -->
+        <script>
+                                    function checkout() {
+                                        alert("Done!");
+                                        let op = document.getElementsByName("payment");
+                                        if (op[0].checked)
+                                            document.getElementById("method").value = op[0].value;
+                                        else 
+                                            document.getElementById("method").value = op[1].value;
+                                        document.getElementById("myForm").submit();
+                                    }
+        </script>
 
     </body>
 

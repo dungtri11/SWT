@@ -5,14 +5,21 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="dao.DAOUser, dao.DAOOrder, entity.User" %>
 <!DOCTYPE html>
-<html>
 
+<html>
+    <%
+        User user = (User)session.getAttribute("user");
+        Integer user_id = (user == null ? 0 : user.getId());
+        DAOUser du = new DAOUser();
+        DAOOrder dOrder = new DAOOrder();
+    %>
     <!-- Mobile Nav (max width 767px)-->
     <div class="mobile-nav">
         <!-- Navbar Brand -->
         <div class="amado-navbar-brand">
-            <a href="homepage.jsp"><img src="img/core-img/logo.png" alt=""></a>
+            <a href="homepage.jsp"><img src="img/core-img/logo4.png" alt=""></a>
         </div>
         <!-- Navbar Toggler -->
         <div class="amado-navbar-toggler">
@@ -28,27 +35,34 @@
         </div>
         <!-- Logo -->
         <div class="logo">
-            <a href="homepage.jsp"><img src="img/core-img/logo.png" alt=""></a>
+            <a href="homepage.jsp"><img src="img/core-img/logo4.png" alt=""></a>
         </div>
         <!-- Amado Nav -->
         <nav class="amado-nav">
             <ul>
                 <li class="active"><a href="homepage.jsp">Home</a></li>
-                <li><a href="shop.jsp">Shop</a></li>
-                <li><a href="product-details.jsp">Product</a></li>
-                <li><a href="cart.jsp">Cart</a></li>
-                <li><a href="checkout.jsp">Checkout</a></li>
+                <li><a href="shopController">Shop</a></li>
             </ul>
         </nav>
         <!-- Button Group -->
         <div class="amado-btn-group mt-30 mb-100">
-            <a href="#" class="btn amado-btn mb-15">%Discount%</a>
-            <a href="#" class="btn amado-btn active">New this week</a>
+            <a href="<%=(user_id != 0 ? "logoutController" : "loginController")%>" class="btn amado-btn mb-15"><%=(user_id == 0 ? "Log In" : "Log Out")%></a>
         </div>
+        <%if(user_id != 0) { %>
+        <div>
+            <label for="username"><img width="50px" height="50px" src="img/core-img/conongcute2.png"></label>
+            <h5 id="username"><%=user.getFirstName() + " " + user.getLastName()%></h5>
+        </div>
+        <% } else { %>
+        <div>
+            <label for="username"><img width="50px" height="50px" src="img/core-img/anonymous.png"></label>
+            <h5 id="username">Anonymous</h5>
+        </div>
+        <% } %>
         <!-- Cart Menu -->
         <div class="cart-fav-search mb-100">
-            <a href="cart.jsp" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
-            <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Account Info</a>
+            <a href="<%=(user_id != 0 ? "cartController" : "loginController")%>" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(<%=dOrder.getOrderDetails(du.getCurrentOrders(user_id).getId()).size()%>)</span></a>
+            <a href="accInfoController"><img src="img/core-img/favorites.png" alt=""> Account Info</a>
             <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
         </div>
         <!-- Social Button -->

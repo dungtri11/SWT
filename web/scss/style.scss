@@ -2,6 +2,17 @@
 @import 'variables';
 @import 'mixin';
 @import 'responsive';
+@import 'common/extend.scss';
+@import 'common/fonts.scss';
+@import 'common/minxi.scss';
+@import 'common/variables.scss';
+@import 'common/global.scss';
+
+//layout
+@import 'layouts/main.scss';
+
+// Responsive
+@import 'layouts/responsive.scss';
 
 /* [Master Stylesheet v-1.0.0] */
 

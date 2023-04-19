@@ -4,7 +4,13 @@
     Author     : Asus
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.Vector" %>
+<%@page import="dao.DAOGenre, entity.Genre" %>
+<%@page import="dao.DAOAuthor, entity.Author" %>
+<%@page import="dao.DAOBook, entity.Book" %>
+<%@page import="dao.DAOUser, entity.User" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,10 +22,10 @@
         <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
         <!-- Title  -->
-        <title>Amado - Furniture Ecommerce Template | Shop</title>
+        <title>ConOng Bookstore | Shop</title>
 
         <!-- Favicon  -->
-        <link rel="icon" href="img/core-img/favicon.ico">
+        <link rel="icon" href="img/core-img/conongcute2.png">
 
         <!-- Core Style CSS -->
         <link rel="stylesheet" href="css/core-style.css">
@@ -28,6 +34,22 @@
     </head>
 
     <body>
+        <%
+            User user = (User)session.getAttribute("user");
+            Integer user_id = (user == null ? 0 : user.getId());
+            DAOUser du = new DAOUser();
+            DAOGenre dg = new DAOGenre();
+            Vector<Genre> vg = dg.getAllGenre();
+            DAOAuthor da = new DAOAuthor();
+            Vector<Author> va = da.getAllAuthor();
+            DAOBook db = new DAOBook();
+            Double range = (request.getParameter("price") == null ? 0.0 : Double.parseDouble(request.getParameter("price")));
+            String key = request.getParameter("search");
+            Integer author_id = (request.getParameter("authors") == null ? null : Integer.parseInt(request.getParameter("authors")));
+            Integer genre_id = (request.getParameter("genres") == null ? null : Integer.parseInt(request.getParameter("genres")));
+            String order = request.getParameter("orders");
+            Vector<Book> vb = db.searchBook(key, author_id, genre_id, order, range);
+        %>
         <!-- Search Wrapper Area Start -->
         <div class="search-wrapper section-padding-100">
             <div class="search-close">
@@ -37,7 +59,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="search-content">
-                            <form action="#" method="get">
+                            <form action="shopController" method="get">
                                 <input type="search" name="search" id="search" placeholder="Type your keyword...">
                                 <button type="submit"><img src="img/core-img/search.png" alt=""></button>
                             </form>
@@ -56,93 +78,51 @@
             <div class="shop_sidebar_area">
 
                 <!-- ##### Single Widget ##### -->
-                <div class="widget catagory mb-50">
-                    <!-- Widget Title -->
-                    <h6 class="widget-title mb-30">Genres</h6>
+                <form action="shopController" method="post"> 
+                    <div class="widget brands mb-50">
+                        <!-- Widget Title -->
+                        <h6 class="widget-title mb-30">Genres</h6>
 
-                    <!--  Catagories  -->
-                    <div class="catagories-menu">
-                        <ul>
-                            <li class="active"><a href="#">Chairs</a></li>
-                            <li><a href="#">Beds</a></li>
-                            <li><a href="#">Accesories</a></li>
-                            <li><a href="#">Furniture</a></li>
-                            <li><a href="#">Home Deco</a></li>
-                            <li><a href="#">Dressings</a></li>
-                            <li><a href="#">Tables</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- ##### Single Widget ##### -->
-                <div class="widget brands mb-50">
-                    <!-- Widget Title -->
-                    <h6 class="widget-title mb-30">Authors</h6>
-
-                    <div class="widget-desc">
-                        <!-- Single Form Check -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="amado">
-                            <label class="form-check-label" for="amado">Amado</label>
-                        </div>
-                        <!-- Single Form Check -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="ikea">
-                            <label class="form-check-label" for="ikea">Ikea</label>
-                        </div>
-                        <!-- Single Form Check -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="furniture">
-                            <label class="form-check-label" for="furniture">Furniture Inc</label>
-                        </div>
-                        <!-- Single Form Check -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="factory">
-                            <label class="form-check-label" for="factory">The factory</label>
-                        </div>
-                        <!-- Single Form Check -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="artdeco">
-                            <label class="form-check-label" for="artdeco">Artdeco</label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ##### Single Widget ##### -->
-                <div class="widget color mb-50">
-                    <!-- Widget Title -->
-                    <h6 class="widget-title mb-30">Color</h6>
-
-                    <div class="widget-desc">
-                        <ul class="d-flex">
-                            <li><a href="#" class="color1"></a></li>
-                            <li><a href="#" class="color2"></a></li>
-                            <li><a href="#" class="color3"></a></li>
-                            <li><a href="#" class="color4"></a></li>
-                            <li><a href="#" class="color5"></a></li>
-                            <li><a href="#" class="color6"></a></li>
-                            <li><a href="#" class="color7"></a></li>
-                            <li><a href="#" class="color8"></a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- ##### Single Widget ##### -->
-                <div class="widget price mb-50">
-                    <!-- Widget Title -->
-                    <h6 class="widget-title mb-30">Price</h6>
-
-                    <div class="widget-desc">
-                        <div class="slider-range">
-                            <div data-min="10" data-max="1000" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="10" data-value-max="1000" data-label-result="">
-                                <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                                <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                        <div class="widget-desc">                       
+                            <%for(Genre genre: vg) { %>
+                            <div class="form-check">
+                                <input type="radio" name="genres" id="genre<%=vg.indexOf(genre)%>" value="<%=genre.getId()%>"/> 
+                                <label class="form-check-label" for="genre<%=vg.indexOf(genre)%>"><%=genre.getName()%></label>
                             </div>
-                            <div class="range-price">$10 - $1000</div>
+                            <% } %>
                         </div>
                     </div>
-                </div>
+
+                    <!-- ##### Single Widget ##### -->
+                    <div class="widget brands mb-50">
+                        <!-- Widget Title -->
+                        <h6 class="widget-title mb-30">Authors</h6>
+
+                        <div class="widget-desc">
+
+                            <%for(Author author: va) { %>
+                            <div class="form-check">
+                                <input type="radio" name="authors" id="author<%=va.indexOf(author)%>" value="<%=author.getId()%>"/> 
+                                <label class="form-check-label" for="author<%=va.indexOf(author)%>"><%=author.getName()%></label>
+                            </div>
+                            <% } %>
+                        </div>
+                    </div>
+
+
+                    <!-- ##### Single Widget ##### -->
+                    <div class="widget price mb-50">
+                        <!-- Widget Title -->
+                        <h6 class="widget-title mb-30">Price</h6>
+                        <label for="price">Select price range:</label>
+                        <input type="range" id="price" name="price" min="0" max="10" value="0">
+                        <span id="price-value"></span>
+
+                    </div>
+
+                    <input class="btn amado-btn mb-15" type="submit" value="Beelter">
+                </form>
+
             </div>
 
             <div class="amado_product_area section-padding-100">
@@ -153,7 +133,7 @@
                             <div class="product-topbar d-xl-flex align-items-end justify-content-between">
                                 <!-- Total Products -->
                                 <div class="total-products">
-                                    <p>Showing 1-8 0f 25</p>
+                                    <p>Showing Room</p>
                                     <div class="view d-flex">
                                         <a href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a>
                                         <a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a>
@@ -162,25 +142,16 @@
                                 <!-- Sorting -->
                                 <div class="product-sorting d-flex">
                                     <div class="sort-by-date d-flex align-items-center mr-15">
-                                        <p>Sort by</p>
-                                        <form action="#" method="get">
-                                            <select name="select" id="sortBydate">
-                                                <option value="value">Date</option>
-                                                <option value="value">Newest</option>
-                                                <option value="value">Popular</option>
+                                        <p>Sort by</p>  
+                                        <form action="shopController?<%=(author_id == null ? "" : "authors="+author_id+"&")%><%=(genre_id == null ? "" : "genres="+genre_id+"&")%>" method="post" id="myForm" >
+
+                                            <select name="orders" id="sortBydate" onchange="submit()">
+                                                <option value="default" selected disabled></option>
+                                                <option value="price" >Price</option>
+                                                <option value="atoz">A to Z</option>                                            
                                             </select>
                                         </form>
-                                    </div>
-                                    <div class="view-product d-flex align-items-center">
-                                        <p>View</p>
-                                        <form action="#" method="get">
-                                            <select name="select" id="viewProduct">
-                                                <option value="value">12</option>
-                                                <option value="value">24</option>
-                                                <option value="value">48</option>
-                                                <option value="value">96</option>
-                                            </select>
-                                        </form>
+
                                     </div>
                                 </div>
                             </div>
@@ -190,50 +161,27 @@
                     <div class="row">
 
                         <!-- Single Product Area -->
-                        <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                            <div class="single-product-wrapper">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="img/product-img/product1.jpg" alt="">
-                                    <!-- Hover Thumb -->
-                                    <img class="hover-img" src="img/product-img/product2.jpg" alt="">
-                                </div>
 
-                                <!-- Product Description -->
-                                <div class="product-description d-flex align-items-center justify-content-between">
-                                    <!-- Product Meta Data -->
-                                    <div class="product-meta-data">
-                                        <div class="line"></div>
-                                        <p class="product-price">$180</p>
-                                        <a href="product-details.jsp">
-                                            <h6>Modern Chair</h6>
-                                        </a>
-                                    </div>
-                                    <!-- Ratings & Cart -->
-                                    <div class="ratings-cart text-right">
-                                        <div class="ratings">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="cart">
-                                            <a href="cart.jsp" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
+                        <!-- Single Product Area -->
+
+
+                        <!-- Single Product Area -->
+
+
+                        <!-- Single Product Area -->
+
+
+                        <!-- Single Product Area -->
+
+                        <% for(Book book : vb) { %>
                         <!-- Single Product Area -->
                         <div class="col-12 col-sm-6 col-md-12 col-xl-6">
                             <div class="single-product-wrapper">
                                 <!-- Product Image -->
                                 <div class="product-img">
-                                    <img src="img/product-img/product2.jpg" alt="">
+                                    <img src="img/books-img/<%=book.getImage()%>" alt="">
                                     <!-- Hover Thumb -->
-                                    <img class="hover-img" src="img/product-img/product3.jpg" alt="">
                                 </div>
 
                                 <!-- Product Description -->
@@ -241,9 +189,11 @@
                                     <!-- Product Meta Data -->
                                     <div class="product-meta-data">
                                         <div class="line"></div>
-                                        <p class="product-price">$180</p>
-                                        <a href="product-details.jsp">
-                                            <h6>Modern Chair</h6>
+                                        <p class="product-price"><%="$"+book.getPrice()%></p>
+                                        <a href="productDetailController?books=<%=book.getId()%>">
+                                            <h6><%=book.getTitle()%></h6>
+                                            <h6>Author: <%=da.getAuthor(book.getAuthorId()).getName()%></h6>
+                                            <h6>Genre: <%=dg.getGenre(book.getGenreId()).getName()%></h6>
                                         </a>
                                     </div>
                                     <!-- Ratings & Cart -->
@@ -256,175 +206,16 @@
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                         </div>
                                         <div class="cart">
-                                            <a href="cart.jsp" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
+                                            <a href="quantityController?books=<%=book.getId()%>&orders=<%=du.getCurrentOrders(user_id).getId()%>&quantity=add" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Single Product Area -->
-                        <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                            <div class="single-product-wrapper">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="img/product-img/product3.jpg" alt="">
-                                    <!-- Hover Thumb -->
-                                    <img class="hover-img" src="img/product-img/product4.jpg" alt="">
-                                </div>
-
-                                <!-- Product Description -->
-                                <div class="product-description d-flex align-items-center justify-content-between">
-                                    <!-- Product Meta Data -->
-                                    <div class="product-meta-data">
-                                        <div class="line"></div>
-                                        <p class="product-price">$180</p>
-                                        <a href="product-details.jsp">
-                                            <h6>Modern Chair</h6>
-                                        </a>
-                                    </div>
-                                    <!-- Ratings & Cart -->
-                                    <div class="ratings-cart text-right">
-                                        <div class="ratings">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="cart">
-                                            <a href="cart.jsp" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Product Area -->
-                        <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                            <div class="single-product-wrapper">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="img/product-img/product4.jpg" alt="">
-                                    <!-- Hover Thumb -->
-                                    <img class="hover-img" src="img/product-img/product5.jpg" alt="">
-                                </div>
-
-                                <!-- Product Description -->
-                                <div class="product-description d-flex align-items-center justify-content-between">
-                                    <!-- Product Meta Data -->
-                                    <div class="product-meta-data">
-                                        <div class="line"></div>
-                                        <p class="product-price">$180</p>
-                                        <a href="product-details.jsp">
-                                            <h6>Modern Chair</h6>
-                                        </a>
-                                    </div>
-                                    <!-- Ratings & Cart -->
-                                    <div class="ratings-cart text-right">
-                                        <div class="ratings">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="cart">
-                                            <a href="cart.jsp" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Product Area -->
-                        <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                            <div class="single-product-wrapper">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="img/product-img/product5.jpg" alt="">
-                                    <!-- Hover Thumb -->
-                                    <img class="hover-img" src="img/product-img/product6.jpg" alt="">
-                                </div>
-
-                                <!-- Product Description -->
-                                <div class="product-description d-flex align-items-center justify-content-between">
-                                    <!-- Product Meta Data -->
-                                    <div class="product-meta-data">
-                                        <div class="line"></div>
-                                        <p class="product-price">$180</p>
-                                        <a href="product-details.jsp">
-                                            <h6>Modern Chair</h6>
-                                        </a>
-                                    </div>
-                                    <!-- Ratings & Cart -->
-                                    <div class="ratings-cart text-right">
-                                        <div class="ratings">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="cart">
-                                            <a href="cart.jsp" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Product Area -->
-                        <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                            <div class="single-product-wrapper">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="img/product-img/product6.jpg" alt="">
-                                    <!-- Hover Thumb -->
-                                    <img class="hover-img" src="img/product-img/product1.jpg" alt="">
-                                </div>
-
-                                <!-- Product Description -->
-                                <div class="product-description d-flex align-items-center justify-content-between">
-                                    <!-- Product Meta Data -->
-                                    <div class="product-meta-data">
-                                        <div class="line"></div>
-                                        <p class="product-price">$180</p>
-                                        <a href="product-details.jsp">
-                                            <h6>Modern Chair</h6>
-                                        </a>
-                                    </div>
-                                    <!-- Ratings & Cart -->
-                                    <div class="ratings-cart text-right">
-                                        <div class="ratings">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="cart">
-                                            <a href="cart.jsp" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </div> 
+                        <% } %>
                     </div>
 
-                    <div class="row">
-                        <div class="col-12">
-                            <!-- Pagination -->
-                            <nav aria-label="navigation">
-                                <ul class="pagination justify-content-end mt-50">
-                                    <li class="page-item active"><a class="page-link" href="#">01.</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">02.</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">03.</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">04.</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -444,6 +235,21 @@
         <script src="js/plugins.js"></script>
         <!-- Active js -->
         <script src="js/active.js"></script>
+        <!-- Active js -->
+        <script>
+                                                var priceRange = document.getElementById("price");
+                                                var priceValue = document.getElementById("price-value");
+
+                                                priceRange.addEventListener("input", function () {
+                                                    priceValue.innerHTML = "Price: $" + priceRange.value;
+                                                });
+
+        </script>
+        <script>
+            function submit() {
+                document.getElementById("myForm").submit();
+            }
+        </script>
 
     </body>
 

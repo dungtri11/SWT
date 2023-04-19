@@ -1,6 +1,6 @@
 <%-- 
     Document   : navigation
-    Created on : Mar 9, 2023, 10:24:04 AM
+    Created on : Mar 14, 2023, 3:38:28 AM
     Author     : Asus
 --%>
 
@@ -12,27 +12,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div>
-            <div>
-                <a><img src="image/ip1.jpg" alt="home-icon"></a>
-            </div>
-            <div>
-                <div>
-                    <a>Home</a>
-                </div>
-                <div>
-                    <a>Shop</a>
-                </div>
-                <div>
-                    <a>Home</a>
-                </div>
-                <div>
-                    <a>Home</a>
-                </div>
-                <div>
-                    <a>Home</a>
-                </div>
-            </div>
-        </div>
+        <a href="adminClientController?go=user">Users</a> |
+        <a href="adminClientController?go=order">Orders</a> |
+        <a href="adminClientController?go=orderitem">Order-Items</a> |
+        <a href="adminClientController?go=book">Books</a> |
+        <a href="adminClientController?go=genre">Genres</a> |
+        <a href="adminClientController?go=author">Authors</a>                                            
+        <a href="adminLogoutController">Log out</a>
     </body>
 </html>

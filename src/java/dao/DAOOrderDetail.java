@@ -19,20 +19,21 @@ import model.DBConnect;
  *
  * @author Asus
  */
-public class DAOOrderDetail extends DBConnect{
+public class DAOOrderDetail extends DBConnect {
+
     public int addOrderDetail(OrderDetail ord) {
         int n = 0;
-        String sql = "INSERT INTO [dbo].[order_items]\n" +
-"           ([order_id]\n" +
-"           ,[book_id]\n" +
-"           ,[quantity]\n" +
-"           ,[price])\n" +
-"     VALUES\n" +
-"           (?\n" +
-"           ,?\n" +
-"           ,?\n" +
-"           ,?)";
-        
+        String sql = "INSERT INTO [dbo].[order_items]\n"
+                + "           ([order_id]\n"
+                + "           ,[book_id]\n"
+                + "           ,[quantity]\n"
+                + "           ,[price])\n"
+                + "     VALUES\n"
+                + "           (?\n"
+                + "           ,?\n"
+                + "           ,?\n"
+                + "           ,?)";
+
         try {
             PreparedStatement pre = conn.prepareStatement(sql);
             pre.setInt(1, ord.getOrderId());
@@ -45,15 +46,15 @@ public class DAOOrderDetail extends DBConnect{
         }
         return n;
     }
-    
+
     public int updateOrderDetail(OrderDetail ord) {
         int n = 0;
-        String sql = "UPDATE [dbo].[order_items]\n" +
-"   SET [order_id] = ?\n" +
-"      ,[book_id] = ?\n" +
-"      ,[quantity] = ?\n" +
-"      ,[price] = ?\n" +
-" WHERE order_item_id = " + ord.getId();
+        String sql = "UPDATE [dbo].[order_items]\n"
+                + "   SET [order_id] = ?\n"
+                + "      ,[book_id] = ?\n"
+                + "      ,[quantity] = ?\n"
+                + "      ,[price] = ?\n"
+                + " WHERE order_item_id = " + ord.getId();
         try {
             PreparedStatement pre = conn.prepareStatement(sql);
             pre.setInt(1, ord.getOrderId());
@@ -66,12 +67,12 @@ public class DAOOrderDetail extends DBConnect{
         }
         return n;
     }
-    
+
     public int deleteOrderDetail(int id) {
         int n = 0;
-        String sql = "DELETE FROM [dbo].[order_items]\n" +
-"      WHERE order_item_id = " + id;
-        
+        String sql = "DELETE FROM [dbo].[order_items]\n"
+                + "      WHERE order_item_id = " + id;
+
         try {
             Statement state = conn.createStatement();
             n = state.executeUpdate(sql);
@@ -80,12 +81,12 @@ public class DAOOrderDetail extends DBConnect{
         }
         return n;
     }
-    
+
     public OrderDetail getOrderDetail(int id) {
         OrderDetail ord = new OrderDetail();
         String sql = "SELECT * FROM [dbo].[order_items] WHERE order_item_id = " + id;
         ResultSet rs = this.getData(sql);
-        
+
         try {
             if (rs.next()) {
                 ord.setId(id);
@@ -99,13 +100,13 @@ public class DAOOrderDetail extends DBConnect{
         }
         return ord;
     }
-    
+
     public Vector<OrderDetail> getAllOrderDetail() {
         Vector<OrderDetail> listOrderDetail = new Vector<OrderDetail>();
         String sql = "SELECT * FROM [dbo].[order_items]";
-        
+
         ResultSet rs = this.getData(sql);
-        
+
         try {
             while (rs.next()) {
                 OrderDetail ord = new OrderDetail();
@@ -121,14 +122,16 @@ public class DAOOrderDetail extends DBConnect{
         }
         return listOrderDetail;
     }
+
     
+
     public void displayAll() {
         Iterator it = this.getAllOrderDetail().iterator();
         while (it.hasNext()) {
             System.out.println(it.next());
         }
     }
-    
+
     public static void main(String[] args) {
         DAOOrderDetail dao = new DAOOrderDetail();
 //        int n = dao.addOrderDetail(new OrderDetail(1, 1, 1, 1, 14.99));
@@ -136,6 +139,6 @@ public class DAOOrderDetail extends DBConnect{
 //        if (n  > 0) {
 //            System.out.println("inserted");
 //        }
-        dao.displayAll();
+        dao.deleteOrderDetail(11);
     }
 }

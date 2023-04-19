@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>loginController</servlet-name>
-        <servlet-class>controller.loginController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>shopController</servlet-name>
         <servlet-class>controller.shopController</servlet-class>
     </servlet>
@@ -12,10 +8,78 @@
         <servlet-name>clientController</servlet-name>
         <servlet-class>controller.clientController</servlet-class>
     </servlet>
-    <servlet-mapping>
+    <servlet>
+        <servlet-name>productDetailController</servlet-name>
+        <servlet-class>controller.productDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>quantityController</servlet-name>
+        <servlet-class>controller.quantityController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>checkoutController</servlet-name>
+        <servlet-class>controller.checkoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>registerController</servlet-name>
+        <servlet-class>controller.registerController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>loginController</servlet-name>
-        <url-pattern>/loginController</url-pattern>
-    </servlet-mapping>
+        <servlet-class>controller.loginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>logoutController</servlet-name>
+        <servlet-class>controller.logoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cartController</servlet-name>
+        <servlet-class>controller.cartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminLoginController</servlet-name>
+        <servlet-class>mvcController.adminLoginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminClientController</servlet-name>
+        <servlet-class>mvcController.adminClientController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>authorController</servlet-name>
+        <servlet-class>mvcController.authorController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>userController</servlet-name>
+        <servlet-class>mvcController.userController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>genreController</servlet-name>
+        <servlet-class>mvcController.genreController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>bookController</servlet-name>
+        <servlet-class>mvcController.bookController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>orderController</servlet-name>
+        <servlet-class>mvcController.orderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>orderDetailController</servlet-name>
+        <servlet-class>mvcController.orderDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminLogoutController</servlet-name>
+        <servlet-class>mvcController.adminLogoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>accInfoController</servlet-name>
+        <servlet-class>controller.accInfoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BillDetailController</servlet-name>
+        <servlet-class>controller.BillDetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>shopController</servlet-name>
         <url-pattern>/shopController</url-pattern>
@@ -23,6 +87,78 @@
     <servlet-mapping>
         <servlet-name>clientController</servlet-name>
         <url-pattern>/clientController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>productDetailController</servlet-name>
+        <url-pattern>/productDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>quantityController</servlet-name>
+        <url-pattern>/quantityController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>checkoutController</servlet-name>
+        <url-pattern>/checkoutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>registerController</servlet-name>
+        <url-pattern>/registerController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loginController</servlet-name>
+        <url-pattern>/loginController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logoutController</servlet-name>
+        <url-pattern>/logoutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cartController</servlet-name>
+        <url-pattern>/cartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminLoginController</servlet-name>
+        <url-pattern>/adminLoginController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminClientController</servlet-name>
+        <url-pattern>/adminClientController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>authorController</servlet-name>
+        <url-pattern>/authorController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>userController</servlet-name>
+        <url-pattern>/userController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>genreController</servlet-name>
+        <url-pattern>/genreController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>bookController</servlet-name>
+        <url-pattern>/bookController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>orderController</servlet-name>
+        <url-pattern>/orderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>orderDetailController</servlet-name>
+        <url-pattern>/orderDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminLogoutController</servlet-name>
+        <url-pattern>/adminLogoutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>accInfoController</servlet-name>
+        <url-pattern>/accInfoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BillDetailController</servlet-name>
+        <url-pattern>/BillDetailController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

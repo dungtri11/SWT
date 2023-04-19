@@ -4,6 +4,7 @@
  */
 package dao;
 
+import entity.Order;
 import entity.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -142,6 +143,120 @@ public class DAOUser extends DBConnect {
         return user;
     }
     
+    public Vector<Order> getOrders(int id) {
+        Vector<Order> listOrders = new Vector<Order>();
+        String sql = "SELECT * FROM [dbo].[orders] WHERE uid = " + id;
+        
+        ResultSet rs = this.getData(sql);
+        
+        try {
+            while (rs.next()){
+                Order order = new Order();
+                order.setId(rs.getInt("order_id"));
+                order.setDate(rs.getString("order_date"));
+                order.setTotal(rs.getDouble("total"));
+                order.setUserId(rs.getInt("uid"));
+                order.setStatus(rs.getInt("status"));
+                listOrders.add(order);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listOrders;
+    }
+    
+    public Order getCurrentOrders(int id) {
+        Order order = new Order();
+        String sql = "SELECT * FROM [dbo].[orders] WHERE uid = " + id + "and status = 1";
+        
+        ResultSet rs = this.getData(sql);
+        
+        try {
+            if (rs.next()){
+                order.setId(rs.getInt("order_id"));
+                order.setDate(rs.getString("order_date"));
+                order.setTotal(rs.getDouble("total"));
+                order.setUserId(rs.getInt("uid"));
+                order.setStatus(rs.getInt("status"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return order;
+    }
+    
+    public User getAccount(String username) {
+        User user = new User();
+        String sql = "SELECT *"
+                + "  FROM [dbo].[Users] WHERE Username = '" + username + "'";
+        ResultSet rs = this.getData(sql);
+        try {
+            if (rs.next()) {
+                user.setId(rs.getInt("uid"));
+                user.setFirstName(rs.getString("first_name"));
+                user.setLastName(rs.getString("last_name"));
+                user.setUsername(rs.getString("Username"));
+                user.setPassword(rs.getString("Password"));
+                user.setEmail(rs.getString("email"));
+                user.setAddress(rs.getString("address"));
+                user.setCity(rs.getString("city"));
+                user.setDistrict(rs.getString("district"));
+                user.setWard(rs.getString("ward"));
+                user.setRole(rs.getInt("UserRole"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return user;
+    }
+    
+    public User login(String username, String password) {
+        User user = new User();
+        String sql = "SELECT *"
+                + "  FROM [dbo].[Users] WHERE (Username = '" + username + "' OR email ='" + username + "') AND Password = '" + password + "'";
+        ResultSet rs = this.getData(sql);
+        try {
+            if (rs.next()) {
+                user.setId(rs.getInt("uid"));
+                user.setFirstName(rs.getString("first_name"));
+                user.setLastName(rs.getString("last_name"));
+                user.setUsername(rs.getString("Username"));
+                user.setPassword(rs.getString("Password"));
+                user.setEmail(rs.getString("email"));
+                user.setAddress(rs.getString("address"));
+                user.setCity(rs.getString("city"));
+                user.setDistrict(rs.getString("district"));
+                user.setWard(rs.getString("ward"));
+                user.setRole(rs.getInt("UserRole"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return user;
+    }
+    
+    public Vector<Order> getCheckredOut(int id) {
+        Vector<Order> listOrders = new Vector<>();
+        String sql = "SELECT * FROM [dbo].[orders] WHERE uid = " + id + " and status = 0";
+
+        ResultSet rs = this.getData(sql);
+
+        try {
+            while (rs.next()) {
+                Order order = new Order();
+                order.setId(rs.getInt("order_id"));
+                order.setDate(rs.getString("order_date"));
+                order.setTotal(rs.getDouble("total"));
+                order.setUserId(rs.getInt("uid"));
+                order.setStatus(rs.getInt("status"));
+                listOrders.add(order);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listOrders;
+    }
+    
     public Vector<User> getAllUser() {
         Vector<User> userList = new Vector<User>();
         String sql = "SELECT *"
@@ -172,7 +287,7 @@ public class DAOUser extends DBConnect {
     }
     
     public void displayAll() {
-        Iterator it = this.getAllUser().iterator();
+        Iterator it = this.getCheckredOut(2).iterator();
         while (it.hasNext()) {
             System.out.println(it.next());
         }
@@ -185,7 +300,7 @@ public class DAOUser extends DBConnect {
 //        if (n > 0) {
 //            System.out.println("inserted");
 //        }
-//        System.out.println(dao.getUser(1002));
-//        dao.displayAll();
+        dao.displayAll();
+//        System.out.println(dao.login("dungntvp","nguyentridung12"));
     }
 }
