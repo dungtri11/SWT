@@ -41,17 +41,18 @@ public class adminLoginController extends HttpServlet {
             HttpSession session = request.getSession();
             if (form == null) {
                 dispatch(request, response, "adminLogin.jsp");
-            }
-            if (form.equals("login")) {
-                DAOAdmin dad = new DAOAdmin();
-                Admin admin = dad.login(request.getParameter("your_name"), request.getParameter("your_pass"));
-                request.setAttribute("admin", admin);
-                
-                if (admin.getUsername() != null) {
-                    response.sendRedirect("adminClientController");
-                    session.setAttribute("admin", admin);
-                } else {
-                    dispatch(request, response, "adminLogin.jsp");
+            } else {
+                if (form.equals("login")) {
+                    DAOAdmin dad = new DAOAdmin();
+                    Admin admin = dad.login(request.getParameter("your_name"), request.getParameter("your_pass"));
+                    request.setAttribute("admin", admin);
+
+                    if (admin.getUsername() != null) {
+                        response.sendRedirect("adminClientController");
+                        session.setAttribute("admin", admin);
+                    } else {
+                        dispatch(request, response, "adminLogin.jsp");
+                    }
                 }
             }
         }
@@ -61,6 +62,7 @@ public class adminLoginController extends HttpServlet {
         RequestDispatcher disp = request.getRequestDispatcher(url);
         disp.forward(request, response);
     }// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *

@@ -34,7 +34,7 @@ public class DAOAdmin extends DBConnect {
     
     public static void main(String[] args) {
         DAOAdmin dao = new DAOAdmin();
-        System.out.println(dao.login("dungntv1", "123"));
+        System.out.println(dao.login("dungntvp", "123"));
         
     }
 }

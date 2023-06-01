@@ -50,8 +50,7 @@ public class DBConnect {
     
     public ResultSet getData(String sql) {
         ResultSet rs = null;
-        try {
-            Statement state = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        try (Statement state = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE)) {
             rs = state.executeQuery(sql);
         } catch (SQLException ex) {
             Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
@@ -61,6 +60,6 @@ public class DBConnect {
     }
     
     public static void main(String[] args) {
-        new DBConnect();
+        
     }
 }

@@ -7,9 +7,6 @@ package controller;
 import dao.DAOUser;
 import entity.User;
 import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -40,26 +37,26 @@ public class loginController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String form = request.getParameter("form");
             String sendTo = request.getParameter("sendTo");
-            System.out.println("sendTo: " + sendTo);
+
             HttpSession session = request.getSession();
             if (form == null) {
                 dispatch(request, response, "login.jsp");
-            }
-            if (form.equals("login")) {
-                DAOUser du = new DAOUser();
-                User user = du.login(request.getParameter("your_name"), request.getParameter("your_pass"));
-                
-                request.setAttribute("user_id", user.getId());
-                System.out.println(user.getUsername() + " " + user.getPassword());
-                if (user.getId() != 0) {
-                    if (sendTo.equals("null")) {
-                        response.sendRedirect("clientController");
+            } else {
+                if (form.equals("login")) {
+                    DAOUser du = new DAOUser();
+                    User user = du.login(request.getParameter("your_name"), request.getParameter("your_pass"));
+
+                    request.setAttribute("user_id", user.getId());
+                    if (user.getId() != 0) {
+                        if (sendTo.equals("null")) {
+                            response.sendRedirect("clientController");
+                        } else {
+                            response.sendRedirect("cartController");
+                        }
+                        session.setAttribute("user", user);
                     } else {
-                        response.sendRedirect("cartController");
+                        dispatch(request, response, "login.jsp");
                     }
-                    session.setAttribute("user", user);
-                } else {
-                    dispatch(request, response, "login.jsp");
                 }
             }
         }

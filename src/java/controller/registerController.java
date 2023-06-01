@@ -4,7 +4,6 @@ package controller;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 import dao.DAOUser;
 import entity.User;
 import jakarta.servlet.RequestDispatcher;
@@ -38,13 +37,14 @@ public class registerController extends HttpServlet {
             String form = request.getParameter("form");
             if (form == null) {
                 dispatch(request, response, "reg.jsp");
-            }
-            if (form.equals("register")) {
-                DAOUser du = new DAOUser();
-                User user = new User(0, request.getParameter("fname"), request.getParameter("lname"), request.getParameter("account"), request.getParameter("pass"), request.getParameter("email"));
-                System.out.println(user);
-                du.addUser(user);
-                response.sendRedirect("loginController");
+            } else {
+                if (form.equals("register")) {
+                    DAOUser du = new DAOUser();
+                    User user = new User(0, request.getParameter("fname"), request.getParameter("lname"), request.getParameter("account"), request.getParameter("pass"), request.getParameter("email"));
+                    System.out.println(user);
+                    du.addUser(user);
+                    response.sendRedirect("loginController");
+                }
             }
         }
     }
@@ -53,6 +53,7 @@ public class registerController extends HttpServlet {
         RequestDispatcher disp = request.getRequestDispatcher(url);
         disp.forward(request, response);
     }// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
