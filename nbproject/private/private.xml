@@ -3,63 +3,64 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/JAVA/PRJ_project/src/java/dao/DAOUser.java</file>
-            <file>file:/E:/JAVA/PRJ_project/web/accountInfo.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/web/BillDetail.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/controller/accInfoController.java</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/mvcController/userController.java</file>
-            <file>file:/E:/JAVA/PRJ_project/web/admin/ViewOrderItem.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/dao/DAOGenre.java</file>
-            <file>file:/E:/JAVA/PRJ_project/web/crud/InsertGenre.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/web/index.html</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/mvcController/adminClientController.java</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/entity/Order.java</file>
-            <file>file:/E:/JAVA/PRJ_project/web/admin/ViewGenre.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/controller/cartController.java</file>
-            <file>file:/E:/JAVA/PRJ_project/web/homepage.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/mvcController/orderDetailController.java</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/mvcController/authorController.java</file>
-            <file>file:/E:/JAVA/PRJ_project/web/crud/UpdateGenre.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/controller/BillDetailController.java</file>
-            <file>file:/E:/JAVA/PRJ_project/web/cart.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/controller/loginController.java</file>
-            <file>file:/E:/JAVA/PRJ_project/web/login.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/controller/quantityController.java</file>
-            <file>file:/E:/JAVA/PRJ_project/web/adminLogin.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/mvcController/genreController.java</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/controller/shopController.java</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/controller/clientController.java</file>
-            <file>file:/E:/JAVA/PRJ_project/web/crud/InsertBook.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/model/Model.java</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/controller/productDetailController.java</file>
-            <file>file:/E:/JAVA/PRJ_project/web/crud/UpdateUser.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/web/crud/InsertUser.jsp</file>
             <file>file:/E:/JAVA/PRJ_project/src/java/dao/DAOOrderDetail.java</file>
-            <file>file:/E:/JAVA/PRJ_project/web/client.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/web/checkout.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/mvcController/adminLogoutController.java</file>
+            <file>file:/E:/JAVA/PRJ_project/web/crud/InsertUser.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/mvcController/genreController.java</file>
+            <file>file:/E:/JAVA/PRJ_project/web/reg.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/entity/Order.java</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/controller/quantityController.java</file>
+            <file>file:/E:/JAVA/PRJ_project/web/chart.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/web/admin/ViewUser.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/web/product-details.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/web/cart.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/web/crud/UpdateUser.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/model/DBConnect.java</file>
+            <file>file:/E:/JAVA/PRJ_project/web/crud/UpdateAuthor.jsp</file>
             <file>file:/E:/JAVA/PRJ_project/src/java/controller/registerController.java</file>
             <file>file:/E:/JAVA/PRJ_project/src/java/mvcController/adminLoginController.java</file>
-            <file>file:/E:/JAVA/PRJ_project/web/crud/UpdateBook.jsp</file>
             <file>file:/E:/JAVA/PRJ_project/web/admin/ViewOrder.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/web/header.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/web/style.css</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/mvcController/adminClientController.java</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/controller/shopController.java</file>
             <file>file:/E:/JAVA/PRJ_project/web/WEB-INF/web.xml</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/controller/logoutController.java</file>
-            <file>file:/E:/JAVA/PRJ_project/web/chart.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/web/homepage.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/web/crud/UpdateBook.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/web/footer.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/web/navigation.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/controller/loginController.java</file>
+            <file>file:/E:/JAVA/PRJ_project/web/admin/ViewOrderItem.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/dao/DAOUser.java</file>
+            <file>file:/E:/JAVA/PRJ_project/web/index.html</file>
+            <file>file:/E:/JAVA/PRJ_project/web/BillDetail.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/controller/clientController.java</file>
+            <file>file:/E:/JAVA/PRJ_project/web/crud/InsertBook.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/web/shop.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/web/style.css</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/model/Model.java</file>
             <file>file:/E:/JAVA/PRJ_project/src/java/mvcController/bookController.java</file>
             <file>file:/E:/JAVA/PRJ_project/src/java/dao/DAOAdmin.java</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/mvcController/adminLogoutController.java</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/mvcController/orderController.java</file>
-            <file>file:/E:/JAVA/PRJ_project/src/java/model/DBConnect.java</file>
-            <file>file:/E:/JAVA/PRJ_project/web/admin/ViewUser.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/web/navigation.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/web/reg.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/web/footer.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/web/product-details.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/web/client.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/controller/accInfoController.java</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/mvcController/userController.java</file>
+            <file>file:/E:/JAVA/PRJ_project/web/header.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/web/accountInfo.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/controller/productDetailController.java</file>
             <file>file:/E:/JAVA/PRJ_project/src/java/controller/checkoutController.java</file>
+            <file>file:/E:/JAVA/PRJ_project/web/login.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/web/admin/ViewGenre.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/mvcController/orderDetailController.java</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/controller/logoutController.java</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/mvcController/authorController.java</file>
+            <file>file:/E:/JAVA/PRJ_project/web/crud/InsertGenre.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/controller/cartController.java</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/mvcController/orderController.java</file>
+            <file>file:/E:/JAVA/PRJ_project/web/crud/UpdateGenre.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/web/adminLogin.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/dao/DAOGenre.java</file>
             <file>file:/E:/JAVA/PRJ_project/src/java/dao/DAOOrder.java</file>
-            <file>file:/E:/JAVA/PRJ_project/web/shop.jsp</file>
-            <file>file:/E:/JAVA/PRJ_project/web/crud/UpdateAuthor.jsp</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/controller/BillDetailController.java</file>
+            <file>file:/E:/JAVA/PRJ_project/src/java/dao/DAOAuthor.java</file>
+            <file>file:/E:/JAVA/PRJ_project/web/checkout.jsp</file>
         </group>
     </open-files>
 </project-private>
